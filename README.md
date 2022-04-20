@@ -1,5 +1,13 @@
 # java-compiler
 
+## Starting rule
+
+antlr
+compilationUnit
+: packageDeclaration? importDeclaration* typeDeclaration*
+| moduleDeclaration EOF
+;
+
 ## Example program
 
 ```java

@@ -2,11 +2,12 @@
 
 ## Starting rule
 
-antlr
+```antlr
 compilationUnit
 : packageDeclaration? importDeclaration* typeDeclaration*
 | moduleDeclaration EOF
 ;
+```
 
 ## Example program
 

@@ -482,7 +482,8 @@ localTypeDeclaration
 statement
     : blockLabel=block
     | ASSERT expression (':' expression)? ';'
-    | IF parExpression statement (ELSE statement)?
+//    | IF parExpression statement (ELSE statement)?
+    | ifStatement
     | FOR '(' forControl ')' statement
     | WHILE parExpression statement
     | DO statement WHILE parExpression ';'
@@ -500,6 +501,10 @@ statement
     | switchExpression ';'? // Java17
     | identifierLabel=identifier ':' statement
     ;
+ifStatement:
+    IF ifExp = parExpression ifBody=statement (elseStatement)?;
+elseStatement:
+    ELSE elseBody=statement;
 
 catchClause
     : CATCH '(' variableModifier* catchType identifier ')' block

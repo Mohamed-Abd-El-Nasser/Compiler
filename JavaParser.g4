@@ -484,7 +484,8 @@ statement
     | ASSERT expression (':' expression)? ';'
 //    | IF parExpression statement (ELSE statement)?
     | ifStatement
-    | FOR '(' forControl ')' statement
+//  | FOR '(' forControl ')' statement;
+    | forStatement
     | WHILE parExpression statement
     | DO statement WHILE parExpression ';'
     | TRY block (catchClause+ finallyBlock? | finallyBlock)
@@ -505,6 +506,9 @@ ifStatement:
     IF ifExp = parExpression ifBody=statement (elseStatement)?;
 elseStatement:
     ELSE elseBody=statement;
+
+forStatement:
+    FOR startBracket='(' forControl endBracket=')' forBody=statement;
 
 catchClause
     : CATCH '(' variableModifier* catchType identifier ')' block

@@ -526,6 +526,12 @@ public interface JavaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForStatement(JavaParser.ForStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JavaParser#whileStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatement(JavaParser.WhileStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JavaParser#catchClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

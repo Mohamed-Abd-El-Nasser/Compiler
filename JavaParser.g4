@@ -486,7 +486,8 @@ statement
     | ifStatement
 //  | FOR '(' forControl ')' statement;
     | forStatement
-    | WHILE parExpression statement
+//    | WHILE parExpression statement
+    | whileStatement
     | DO statement WHILE parExpression ';'
     | TRY block (catchClause+ finallyBlock? | finallyBlock)
     | TRY resourceSpecification block catchClause* finallyBlock?
@@ -509,7 +510,8 @@ elseStatement:
 
 forStatement:
     FOR startBracket='(' forControl endBracket=')' forBody=statement;
-
+whileStatement:
+    WHILE whileExp=parExpression whileBody=statement;
 catchClause
     : CATCH '(' variableModifier* catchType identifier ')' block
     ;

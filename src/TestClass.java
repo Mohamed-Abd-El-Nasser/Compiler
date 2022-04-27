@@ -11,7 +11,7 @@ import java.util.*;
 public class TestClass{
     public static void main(String[] args) throws Exception {
 
-        CharStream input = CharStreams.fromFileName("Test/Test2.java");
+        CharStream input = CharStreams.fromFileName("Test/Test3.java");
 
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -23,13 +23,13 @@ public class TestClass{
         walker.walk(extractor, tree);
 
         // write the answer to file
-        File outputFile = new File("Test/outputTest2.java");
+        File outputFile = new File("Test/outputTest3.java");
         if (!outputFile.createNewFile()) {
             outputFile.delete() ;
-            outputFile = new File("Test/outputTest2.java");
+            outputFile = new File("Test/outputTest3.java");
         }
-        FileWriter myWriter = new FileWriter("Test/outputTest2.java");
-        myWriter.write(extractor.rewriter.getText().replace("class Test2" , "class outputTest2"));
+        FileWriter myWriter = new FileWriter("Test/outputTest3.java");
+        myWriter.write(extractor.rewriter.getText().replace("class Test3" , "class outputTest3"));
         myWriter.close();
 
     }

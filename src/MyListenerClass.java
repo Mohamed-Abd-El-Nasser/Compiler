@@ -7,6 +7,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     int elseBlockCount = 1;
     int forBlockCount = 1;
     int whileBlockCount = 1;
+    int switchBlockCount = 1;
 
     public MyListenerClass(TokenStream tokens) {
         rewriter = new TokenStreamRewriter(tokens);
@@ -125,5 +126,15 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\t}");
         }
         super.exitWhileStatement(ctx);
+    }
+    @Override
+    public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
+        int lineNumber = ctx.start.getLine();
+
+        String injectedMessage = String.format("\"SWITCH Label Block number: %d at line number %d\"", switchBlockCount, lineNumber);
+        switchBlockCount++;
+        String injectedCode = "\n\t\t\t    System.out.println(" + injectedMessage + ");";
+        rewriter.insertAfter(ctx.COLON().getSymbol(), injectedCode);
+        super.enterSwitchLabel(ctx);
     }
 }

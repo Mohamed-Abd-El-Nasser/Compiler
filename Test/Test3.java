@@ -3,7 +3,7 @@ import java.io.FileWriter;
 
 public class Test3 {
     public static void main(String[] args) throws Exception{
-        FileWriter fileWriter = new FileWriter("Test/abstractOutput.txt");
+        FileWriter fileWriter = new FileWriter("Test/output3.txt");
         int i = 0;
         while (i < 5) {
             System.out.println(i);

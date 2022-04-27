@@ -5,6 +5,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     TokenStreamRewriter rewriter;
     int ifBlockCount = 1;
     int elseBlockCount = 1;
+    int switchBlockCount = 1;
     public MyListenerClass(TokenStream tokens) {
         rewriter = new TokenStreamRewriter(tokens);
     }
@@ -64,5 +65,28 @@ public class MyListenerClass extends JavaParserBaseListener {
             }
             super.exitElseStatement(ctx);
         }
+    }
+
+    @Override
+    public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
+        int lineNumber = ctx.start.getLine();
+
+        String injectedMessage = String.format("\"SWITCH Label Block number: %d at line number %d\"", switchBlockCount, lineNumber);
+        switchBlockCount++;
+        String injectedCode = "\n\t\t\t    System.out.println(" + injectedMessage + ");";
+        rewriter.insertAfter(ctx.COLON().getSymbol(), injectedCode);
+        super.enterSwitchLabel(ctx);
+    }
+
+    @Override
+    public void enterSwitchStatement(JavaParser.SwitchStatementContext ctx) {
+        //System.out.println("ayooo entering switch");
+        //int lineNumber = ctx.start.getLine();
+        //String injectedMessage = String.format("\"SWITCH Block number: %d at line number %d\"", switchBlockCount, lineNumber);
+        //switchBlockCount++;
+        //String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");";
+        //System.out.println("body" + ctx.switchBody);
+        //rewriter.insertAfter(ctx.switchBody.switchLabel().ge, injectedCode);
+        super.enterSwitchStatement(ctx);
     }
 }

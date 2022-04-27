@@ -6,6 +6,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     int ifBlockCount = 1;
     int elseBlockCount = 1;
     int forBlockCount = 1;
+    int whileBlockCount = 1;
 
     public MyListenerClass(TokenStream tokens) {
         rewriter = new TokenStreamRewriter(tokens);
@@ -96,5 +97,33 @@ public class MyListenerClass extends JavaParserBaseListener {
         }
 
         super.exitForStatement(ctx);
+    }
+
+    @Override
+    public void enterWhileStatement(JavaParser.WhileStatementContext ctx) {
+
+        int lineNumber = ctx.start.getLine();
+        String injectedMessage = String.format("\"While Block number: %d at line number %d\"", whileBlockCount,lineNumber);
+
+        if(ctx.getChild(2).getText().charAt(0) =='{') {
+            String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");";
+            rewriter.insertAfter(ctx.whileBody.getStart(), injectedCode);
+
+        }else{
+            String injectedCode = "System.out.println(" + injectedMessage + ");\n\t\t\t";
+            rewriter.insertAfter(ctx.whileExp.getStop(), '{');
+            rewriter.insertBefore(ctx.whileBody.getStart(), injectedCode);
+        }
+        whileBlockCount++;
+
+        super.enterWhileStatement(ctx);
+    }
+
+    @Override
+    public void exitWhileStatement(JavaParser.WhileStatementContext ctx) {
+        if(ctx.getChild(2).getText().charAt(0) !='{') {
+            rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\t}");
+        }
+        super.exitWhileStatement(ctx);
     }
 }

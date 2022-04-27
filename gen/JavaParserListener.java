@@ -867,6 +867,16 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitForStatement(JavaParser.ForStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatement(JavaParser.WhileStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatement(JavaParser.WhileStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaParser#catchClause}.
 	 * @param ctx the parse tree
 	 */

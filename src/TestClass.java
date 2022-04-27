@@ -2,15 +2,11 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 import java.io.File;
-import java.io.File;  // Import the File class
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.io.FileInputStream;
-import java.util.*;
+import java.io.FileWriter;
 
 public class TestClass{
     public static void main(String[] args) throws Exception {
-    int testNumber = 4;
+    int testNumber = 1;
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
         JavaLexer lexer = new JavaLexer(input);

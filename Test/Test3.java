@@ -1,7 +1,9 @@
 package Test;
+import java.io.FileWriter;
 
 public class Test3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+        FileWriter fileWriter = new FileWriter("Test/abstractOutput.txt");
         int i = 0;
         while (i < 5) {
             System.out.println(i);
@@ -17,5 +19,6 @@ public class Test3 {
                 if (i < 1)
                     System.out.println(i);
             }
+        fileWriter.close();
     }
 }

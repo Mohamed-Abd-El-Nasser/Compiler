@@ -491,7 +491,8 @@ statement
     | DO statement WHILE parExpression ';'
     | TRY block (catchClause+ finallyBlock? | finallyBlock)
     | TRY resourceSpecification block catchClause* finallyBlock?
-    | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+//    | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+    | switchStatement
     | SYNCHRONIZED parExpression block
     | RETURN expression? ';'
     | THROW expression ';'
@@ -515,7 +516,8 @@ whileStatement:
 catchClause
     : CATCH '(' variableModifier* catchType identifier ')' block
     ;
-
+switchStatement:
+    SWITCH switchExpr=parExpression '{' switchBody=switchBlockStatementGroup* switchLabel* '}';
 catchType
     : qualifiedName ('|' qualifiedName)*
     ;

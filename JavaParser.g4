@@ -489,7 +489,8 @@ statement
     | DO statement WHILE parExpression ';'
     | TRY block (catchClause+ finallyBlock? | finallyBlock)
     | TRY resourceSpecification block catchClause* finallyBlock?
-    | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+//    | SWITCH parExpression '{' switchBlockStatementGroup* switchLabel* '}'
+    | switchStatement
     | SYNCHRONIZED parExpression block
     | RETURN expression? ';'
     | THROW expression ';'
@@ -505,7 +506,8 @@ ifStatement:
     IF ifExp = parExpression ifBody=statement (elseStatement)?;
 elseStatement:
     ELSE elseBody=statement;
-
+switchStatement:
+    SWITCH switchExpr=parExpression '{' switchBody=switchBlockStatementGroup* switchLabel* '}';
 catchClause
     : CATCH '(' variableModifier* catchType identifier ')' block
     ;

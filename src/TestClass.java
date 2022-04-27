@@ -10,8 +10,8 @@ import java.util.*;
 
 public class TestClass{
     public static void main(String[] args) throws Exception {
-
-        CharStream input = CharStreams.fromFileName("Test/Test3.java");
+    int testNumber = 4;
+        CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -23,13 +23,13 @@ public class TestClass{
         walker.walk(extractor, tree);
 
         // write the answer to file
-        File outputFile = new File("Test/outputTest3.java");
+        File outputFile = new File("Test/outputTest" + testNumber + ".java");
         if (!outputFile.createNewFile()) {
             outputFile.delete() ;
-            outputFile = new File("Test/outputTest3.java");
+            outputFile = new File("Test/outputTest" + testNumber + ".java");
         }
-        FileWriter myWriter = new FileWriter("Test/outputTest3.java");
-        myWriter.write(extractor.rewriter.getText().replace("class Test3" , "class outputTest3"));
+        FileWriter myWriter = new FileWriter("Test/outputTest" + testNumber +".java");
+        myWriter.write(extractor.rewriter.getText().replace("class Test" + testNumber , "class outputTest" + testNumber));
         myWriter.close();
 
     }

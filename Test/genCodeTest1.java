@@ -9,7 +9,7 @@ public class genCodeTest1 {
             
 			System.out.println("IF Block number: 1 at line number 8\n");
 			fileWriter.append("IF Block number: 1 at line number 8\n");
-if(x==1){
+if(x==2){
             
 			System.out.println("IF Block number: 2 at line number 9\n");
 			fileWriter.append("IF Block number: 2 at line number 9\n");

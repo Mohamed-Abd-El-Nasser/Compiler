@@ -18,7 +18,7 @@ public class genCodeTest2 {
 			System.out.println("For Block number: 3 at line number 11\n");
 			fileWriter.append("For Block number: 3 at line number 11\n");
 
-                    for(int l = 0 ; l<5;l++){
+                    for(int l = 0 ; l<6;l++){
 			System.out.println("For Block number: 4 at line number 12\n");
 			fileWriter.append("For Block number: 4 at line number 12\n");
 
@@ -34,11 +34,15 @@ public class genCodeTest2 {
 
                             System.out.println("Else Block ");
                         }
-                    }
-                }
-            }
+                    
+		break;}
+                
+		break;}
+            
+		break;}
 
-        }
+        
+		break;}
         for(int j = 0 ; j<5;j++){
             
 			System.out.println("For Block number: 5 at line number 24\n");
@@ -53,7 +57,9 @@ if(x>0){
 			fileWriter.append("IF Block number: 2 at line number 26\n");
 System.out.println("nested operations");
 		}
+		break;
 		}
+		break;
 		}
         if (x==0){
             

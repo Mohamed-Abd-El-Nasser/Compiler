@@ -15,10 +15,12 @@ public class genCodeTest3 {
 			System.out.println("For Block number: 1 at line number 10\n");
 			fileWriter.append("For Block number: 1 at line number 10\n");
 System.out.println("test");
+		break;
 		}
 
             i++;
-        }
+        
+		break;}
         while (i < 5){
             
 			System.out.println("While Block number: 2 at line number 15\n");
@@ -40,6 +42,7 @@ System.out.println(i);
 System.out.println(i);
 		}
             }
+		break;
 		}
         fileWriter.close();
     }

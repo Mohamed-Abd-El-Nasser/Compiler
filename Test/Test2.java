@@ -9,7 +9,7 @@ public class Test2 {
 
             for(int j = 0 ; j<5;j++){
                 for(int k = 0 ; k<5;k++){
-                    for(int l = 0 ; l<5;l++){
+                    for(int l = 0 ; l<6;l++){
                         System.out.println("for loop block");
                         if(x==1){
                             System.out.println("If Block ");

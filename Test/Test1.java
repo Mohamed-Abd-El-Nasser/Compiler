@@ -6,7 +6,7 @@ public class Test1 {
         FileWriter fileWriter = new FileWriter("Test/output1.txt");
         int x=1;
         if (x>=0)
-            if(x==1)
+            if(x==2)
             System.out.println("If Block");
         if (x==1) {
             System.out.println("If Block");

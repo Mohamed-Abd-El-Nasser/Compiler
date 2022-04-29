@@ -77,8 +77,9 @@ public class MyListenerClass extends JavaParserBaseListener {
         if(ctx.getChild(4).getText().charAt(0) =='{') {
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
             rewriter.insertAfter(ctx.forBody.getStart(), injectedCode);
-
-        }else{
+            rewriter.insertBefore(ctx.forBody.getStop(),"\n\t\tbreak;");
+        }
+        else{
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
 
             rewriter.insertAfter(ctx.endBracket, '{');
@@ -94,6 +95,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     public void exitForStatement(JavaParser.ForStatementContext ctx) {
 
         if(ctx.getChild(4).getText().charAt(0) !='{') {
+            rewriter.insertAfter(ctx.forBody.getStop(), "\n\t\tbreak;");
             rewriter.insertAfter(ctx.forBody.getStop(), "\n\t\t}");
         }
 
@@ -108,6 +110,7 @@ public class MyListenerClass extends JavaParserBaseListener {
 
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
+            rewriter.insertBefore(ctx.whileBody.getStop(),"\n\t\tbreak;");
             rewriter.insertAfter(ctx.whileBody.getStart(), injectedCode);
 
         }else{
@@ -123,6 +126,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     @Override
     public void exitWhileStatement(JavaParser.WhileStatementContext ctx) {
         if(ctx.getChild(2).getText().charAt(0) !='{') {
+            rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\tbreak;");
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\t}");
         }
         super.exitWhileStatement(ctx);

@@ -3,11 +3,7 @@ import org.antlr.v4.runtime.TokenStreamRewriter;
 
 public class MyListenerClass extends JavaParserBaseListener {
     TokenStreamRewriter rewriter;
-    int ifBlockCount = 1;
-    int elseBlockCount = 1;
-    int forBlockCount = 1;
-    int whileBlockCount = 1;
-    int switchBlockCount = 1;
+    int blocksCount = 1;
 
     public MyListenerClass(TokenStream tokens) {
         rewriter = new TokenStreamRewriter(tokens);
@@ -16,7 +12,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     @Override
     public void enterIfStatement(JavaParser.IfStatementContext ctx){
         int lineNumber = ctx.start.getLine();
-        String injectedMessage = String.format("\"IF Block number: %d at line number %d\\n\"", ifBlockCount, lineNumber);
+        String injectedMessage = String.format("\"%d\\n\"", blocksCount);
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
             rewriter.insertAfter(ctx.ifBody.getStart(), injectedCode);
@@ -25,7 +21,7 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.ifExp.getStop(), '{');
             rewriter.insertBefore(ctx.ifBody.getStart(), injectedCode);
         }
-        ifBlockCount++;
+        blocksCount++;
         super.enterIfStatement(ctx);
     }
 
@@ -40,7 +36,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     @Override
     public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
         int lineNumber = ctx.start.getLine();
-        String injectedMessage = String.format("\"ELSE Block number: %d at line number %d\\n\"", elseBlockCount,lineNumber);
+        String injectedMessage = String.format("\"%d\\n\"", blocksCount);
 
         if(ctx.getChildCount()>0){
             int count = ctx.getChildCount();
@@ -55,7 +51,7 @@ public class MyListenerClass extends JavaParserBaseListener {
                     rewriter.insertBefore(ctx.elseBody.getStart(), injectedCode);
                 }
             }
-            elseBlockCount++;
+            blocksCount++;
         }
         super.enterElseStatement(ctx);
     }
@@ -73,7 +69,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     @Override
     public void enterForStatement(JavaParser.ForStatementContext ctx) {
         int lineNumber = ctx.start.getLine();
-        String injectedMessage = String.format("\"For Block number: %d at line number %d\\n\"", forBlockCount,lineNumber);
+        String injectedMessage = String.format("\"%d\\n\"", blocksCount);
         if(ctx.getChild(4).getText().charAt(0) =='{') {
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
             rewriter.insertAfter(ctx.forBody.getStart(), injectedCode);
@@ -85,7 +81,7 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.endBracket, '{');
             rewriter.insertBefore(ctx.forBody.getStart(), injectedCode);
         }
-        forBlockCount++;
+        blocksCount++;
  //       System.out.println(ctx.getChild(1));
 
         super.enterForStatement(ctx);
@@ -106,7 +102,7 @@ public class MyListenerClass extends JavaParserBaseListener {
     public void enterWhileStatement(JavaParser.WhileStatementContext ctx) {
 
         int lineNumber = ctx.start.getLine();
-        String injectedMessage = String.format("\"While Block number: %d at line number %d\\n\"", whileBlockCount,lineNumber);
+        String injectedMessage = String.format("\"%d\\n\"", blocksCount);
 
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
@@ -118,7 +114,7 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.whileExp.getStop(), '{');
             rewriter.insertBefore(ctx.whileBody.getStart(), injectedCode);
         }
-        whileBlockCount++;
+        blocksCount++;
 
         super.enterWhileStatement(ctx);
     }
@@ -129,14 +125,15 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\tbreak;");
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\t}");
         }
+        blocksCount++;
         super.exitWhileStatement(ctx);
     }
     @Override
     public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
         int lineNumber = ctx.start.getLine();
 
-        String injectedMessage = String.format("\"SWITCH Label Block number: %d at line number %d\\n\"", switchBlockCount, lineNumber);
-        switchBlockCount++;
+        String injectedMessage = String.format("\"%d\\n\"", blocksCount);
+        blocksCount++;
         String injectedCode = "\n\t\t\tSystem.out.println(" + injectedMessage + ");" + "\n\t\t\tfileWriter.append(" + injectedMessage + ");\n";
         rewriter.insertAfter(ctx.COLON().getSymbol(), injectedCode);
         super.enterSwitchLabel(ctx);

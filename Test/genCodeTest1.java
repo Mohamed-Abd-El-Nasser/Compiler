@@ -6,29 +6,29 @@ public class genCodeTest1{
         int x=1;
         if (x>=0){
             
-			System.out.println("IF Block number: 1 at line number 5\n");
-			fileWriter.append("IF Block number: 1 at line number 5\n");
+			System.out.println("1\n");
+			fileWriter.append("1\n");
 if(x==2){
             
-			System.out.println("IF Block number: 2 at line number 6\n");
-			fileWriter.append("IF Block number: 2 at line number 6\n");
+			System.out.println("2\n");
+			fileWriter.append("2\n");
 System.out.println("If Block");
 		}
 		}
         if (x==1) {
-			System.out.println("IF Block number: 3 at line number 8\n");
-			fileWriter.append("IF Block number: 3 at line number 8\n");
+			System.out.println("3\n");
+			fileWriter.append("3\n");
 
             System.out.println("If Block");
         }
         else {
-			System.out.println("ELSE Block number: 1 at line number 11\n");
-			fileWriter.append("ELSE Block number: 1 at line number 11\n");
+			System.out.println("4\n");
+			fileWriter.append("4\n");
 
             if (x>=0){
                 
-			System.out.println("IF Block number: 4 at line number 12\n");
-			fileWriter.append("IF Block number: 4 at line number 12\n");
+			System.out.println("5\n");
+			fileWriter.append("5\n");
 System.out.println("If Block");
 		}
             System.out.println("ELSE Block");

@@ -5,14 +5,14 @@ public class genCodeTest3{
         FileWriter fileWriter = new FileWriter("Test/executionOutput.txt");
         int i = 0;
         while (i < 5) {
-			System.out.println("While Block number: 1 at line number 5\n");
-			fileWriter.append("While Block number: 1 at line number 5\n");
+			System.out.println("1\n");
+			fileWriter.append("1\n");
 
             System.out.println(i);
             for(int j = 0;j<5;j++){
                 
-			System.out.println("For Block number: 1 at line number 7\n");
-			fileWriter.append("For Block number: 1 at line number 7\n");
+			System.out.println("2\n");
+			fileWriter.append("2\n");
 System.out.println("test");
 		break;
 		}
@@ -22,22 +22,22 @@ System.out.println("test");
 		break;}
         while (i < 5){
             
-			System.out.println("While Block number: 2 at line number 12\n");
-			fileWriter.append("While Block number: 2 at line number 12\n");
+			System.out.println("3\n");
+			fileWriter.append("3\n");
 if(i<5){
               
-			System.out.println("IF Block number: 1 at line number 13\n");
-			fileWriter.append("IF Block number: 1 at line number 13\n");
+			System.out.println("4\n");
+			fileWriter.append("4\n");
 System.out.println(i);
 		}
             else {
-			System.out.println("ELSE Block number: 1 at line number 15\n");
-			fileWriter.append("ELSE Block number: 1 at line number 15\n");
+			System.out.println("5\n");
+			fileWriter.append("5\n");
 
                 if (i < 1){
                     
-			System.out.println("IF Block number: 2 at line number 16\n");
-			fileWriter.append("IF Block number: 2 at line number 16\n");
+			System.out.println("6\n");
+			fileWriter.append("6\n");
 System.out.println(i);
 		}
             }

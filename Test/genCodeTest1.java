@@ -22,13 +22,13 @@ System.out.println("If Block");
             System.out.println("If Block");
         }
         else {
-			System.out.println("ELSE Block number: 1 at line number 11\n");
-			fileWriter.append("ELSE Block number: 1 at line number 11\n");
+			System.out.println("ELSE Block number: 4 at line number 11\n");
+			fileWriter.append("ELSE Block number: 4 at line number 11\n");
 
             if (x>=0){
                 
-			System.out.println("IF Block number: 4 at line number 12\n");
-			fileWriter.append("IF Block number: 4 at line number 12\n");
+			System.out.println("IF Block number: 5 at line number 12\n");
+			fileWriter.append("IF Block number: 5 at line number 12\n");
 System.out.println("If Block");
 		}
             System.out.println("ELSE Block");

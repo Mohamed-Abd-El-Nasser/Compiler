@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
-        int testNumber = 3;
+        int testNumber = 4;
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
         JavaLexer lexer = new JavaLexer(input);
@@ -29,7 +29,19 @@ public class DriverProgram {
             outputFile = new File("Test/genCodeTest" + testNumber + ".java");
         }
         FileWriter myWriter = new FileWriter("Test/genCodeTest" + testNumber +".java");
-        myWriter.write(extractor.rewriter.getText().replace("class Test" + testNumber , "class genCodeTest" + testNumber));
+
+        StringBuffer content = new StringBuffer(extractor.rewriter.getText().replace("public class Test" + testNumber + " {\n" +
+                "    public static void main(String[] args) throws Exception{"  , "import java.io.FileWriter;\n" +
+                "public class genCodeTest" + testNumber + "{\n" +
+                "    public static void main(String[] args) throws Exception{\n" +
+                "        FileWriter fileWriter = new FileWriter(\"Test/executionOutput.txt\");"));
+
+        int strLength = content.length();
+
+        content.replace(strLength-3,strLength-3,"\tfileWriter.close();\n\t");
+
+        myWriter.write(String.valueOf(content));
+
         myWriter.close();
 
         // Automatically run the generated code

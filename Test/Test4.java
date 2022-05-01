@@ -1,9 +1,6 @@
 package Test;
-import java.io.FileWriter;
-
 public class Test4 {
     public static void main(String[] args) throws Exception{
-        FileWriter fileWriter = new FileWriter("Test/output4.txt");
         int x = 10;
         switch(x) {
             case 5:
@@ -19,6 +16,5 @@ public class Test4 {
             default:
                 System.out.println("default case");
         }
-        fileWriter.close();
     }
 }

@@ -1,9 +1,6 @@
 package Test;
-import java.io.FileWriter;
-
 public class Test2 {
     public static void main(String[] args) throws Exception{
-        FileWriter fileWriter = new FileWriter("Test/output2.txt");
         int x=1;
         for(int i = 0 ; i<5;i++){
 
@@ -36,6 +33,5 @@ public class Test2 {
                 System.out.println("If Block");
             System.out.println("ELSE Block");
         }
-        fileWriter.close();
     }
 }

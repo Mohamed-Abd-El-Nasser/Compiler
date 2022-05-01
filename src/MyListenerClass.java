@@ -125,6 +125,7 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\tbreak;");
             rewriter.insertAfter(ctx.whileBody.getStop(), "\n\t\t}");
         }
+        blocksCount++;
         super.exitWhileStatement(ctx);
     }
     @Override

@@ -1,4 +1,4 @@
-// Generated from /home/mmohie/Documents/java-compiler/JavaLexer.g4 by ANTLR 4.9.2
+// Generated from /media/adham/Life/Productivity/College/4th year/2022/2nd semester/compilers/section/java-compiler/JavaLexer.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

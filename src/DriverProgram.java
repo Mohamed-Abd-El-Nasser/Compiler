@@ -11,6 +11,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+/**
+ * this is the detailed description for this class
+ * the class main is <b> MyListener </b> which overrides function to
+ * To know the block income and block exit for each of
+ * for ,while , if , else ,switch statements extends @JavaParserBaseListener ctx
+ *
+ *
+ */
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
@@ -32,7 +40,15 @@ public class DriverProgram {
          generateHtmlOutput(testNumber,tokens,tree);
 
     }
-    private static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+
+    /**
+     * This Function create object from mylistenerclass and create new  java file for injected java code
+     * @param testNumber
+     * @param tokens
+     * @param tree
+     * @throws Exception
+     */
+    public static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         MyListenerClass extractor = new MyListenerClass(tokens);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(extractor, tree);
@@ -58,7 +74,13 @@ public class DriverProgram {
         myWriter.close();
     }
 
-    private static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
+    /**
+     * This function used to print entered blocks in console and file text printed in it entered blocks in statement
+     * @param testNumber
+     * @param javaLocation
+     * @throws Exception
+     */
+    public static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
         String command[] = {javaLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -83,7 +105,15 @@ public class DriverProgram {
             }
         }
     }
-    private static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
+
+    /**
+     * This function is helper function help format code \n
+     * used output code print in console and if
+     * @param status
+     * @param input
+     * @throws IOException
+     */
+    public static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(input));
         System.out.println("*********************** " + status + " ***********************");
         String line = null;
@@ -92,7 +122,7 @@ public class DriverProgram {
         }
         in.close();
     }
-    private static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+    public static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile(testNumber));
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(htmlExtractor, tree);
@@ -106,6 +136,13 @@ public class DriverProgram {
         myWriter2.close();
     }
 
+    /**
+     * this Function used to injected html code for enter blocks and no enter blocks
+     * coloring green in enter blocks
+     * coloring red in not enter blocks
+     * @param testNo
+     * @return
+     */
     static ArrayList<Integer> readOutPutTxtFile(int testNo) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         try {

@@ -42,7 +42,7 @@ public class DriverProgram {
     }
 
     /**
-     * This Fucntion create object from mylistenerclass and create new injected java file
+     * This Function create object from mylistenerclass and create new  java file for injected java code
      * @param testNumber
      * @param tokens
      * @param tree
@@ -75,7 +75,7 @@ public class DriverProgram {
     }
 
     /**
-     * This function used to print entered blocks in console and file text printed entered blocks in statement
+     * This function used to print entered blocks in console and file text printed in it entered blocks in statement
      * @param testNumber
      * @param javaLocation
      * @throws Exception
@@ -106,7 +106,13 @@ public class DriverProgram {
         }
     }
 
-
+    /**
+     * This function is helper function help format code \n
+     * used output code print in console and if
+     * @param status
+     * @param input
+     * @throws IOException
+     */
     public static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(input));
         System.out.println("*********************** " + status + " ***********************");
@@ -130,6 +136,13 @@ public class DriverProgram {
         myWriter2.close();
     }
 
+    /**
+     * this Function used to injected html code for enter blocks and no enter blocks
+     * coloring green in enter blocks
+     * coloring red in not enter blocks
+     * @param testNo
+     * @return
+     */
     static ArrayList<Integer> readOutPutTxtFile(int testNo) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         try {

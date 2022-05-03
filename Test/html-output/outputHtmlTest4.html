@@ -1,24 +1,24 @@
-<html> <style>.green {background-color: green} .red{background-color: red}</style><body class=green><pre>package Test;
+<html> <style>.green {background-color: #22C55E} .red{background-color: #EF4444}</style><body class=green><pre>package Test;
 public class Test4 {
     public static void main(String[] args) throws Exception{
         int x = 10;
         switch(x) {
             <pre class='red' id='1 '>case 5:
                 System.out.println("This is a 5");
-                break;
+                break;</pre>
             <pre class='green' id='2 '>case 10:
                 System.out.println("This is a 10");
-                break;
+                break;</pre>
         }
         switch(6) {
             <pre class='green' id='3 '>case 6:
                 System.out.println("This is a 6");
-                break;
+                break;</pre>
             <pre class='red' id='4 '>case 9:
                 System.out.println("This is a 9");
-                break;
+                break;</pre>
             <pre class='red' id='5 '>default:
-                System.out.println("default case");
+                System.out.println("default case");</pre>
         }
     }
 }

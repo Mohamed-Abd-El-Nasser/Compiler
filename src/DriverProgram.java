@@ -14,7 +14,8 @@ import java.io.*;
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
-        int testNumber = 4;
+        int testNumber = 1;
+
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
         JavaLexer lexer = new JavaLexer(input);
@@ -22,17 +23,25 @@ public class DriverProgram {
         JavaParser parser = new JavaParser(tokens);
 
         ParseTree tree = parser.compilationUnit();
-        ParseTreeWalker walker = new ParseTreeWalker();
-        MyListenerClass extractor = new MyListenerClass(tokens);
-        walker.walk(extractor, tree);
 
-        // write the answer to file
-        File outputFile = new File("Test/genCodeTest" + testNumber + ".java");
+        generateIntermediateCode(testNumber,tokens,tree);
+
+        String javaLocation = "/home/mmohie/.jdks/openjdk-18/bin/java";
+         runIntermediateCode(testNumber,javaLocation);
+
+         generateHtmlOutput(testNumber,tokens,tree);
+
+    }
+    private static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+        MyListenerClass extractor = new MyListenerClass(tokens);
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(extractor, tree);
+        File outputFile = new File("Test/intermediate-code/genCodeTest" + testNumber + ".java");
         if (!outputFile.createNewFile()) {
             outputFile.delete() ;
-            outputFile = new File("Test/genCodeTest" + testNumber + ".java");
+            outputFile = new File("Test/intermediate-code/genCodeTest" + testNumber + ".java");
         }
-        FileWriter myWriter = new FileWriter("Test/genCodeTest" + testNumber +".java");
+        FileWriter myWriter = new FileWriter("Test/intermediate-code/genCodeTest" + testNumber +".java");
 
         StringBuffer content = new StringBuffer(extractor.rewriter.getText().replace("public class Test" + testNumber + " {\n" +
                 "    public static void main(String[] args) throws Exception{"  , "import java.io.FileWriter;\n" +
@@ -47,10 +56,10 @@ public class DriverProgram {
         myWriter.write(String.valueOf(content));
 
         myWriter.close();
+    }
 
-        // Automatically run the generated code
-
-        String command[] = {"/home/adham/.jdks/openjdk-17.0.2/bin/java","Test/genCodeTest" + testNumber +".java"};
+    private static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
+        String command[] = {javaLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
 
@@ -59,7 +68,7 @@ public class DriverProgram {
 
         // Check if any errors or compilation errors encounter then print on Console.
         if( process.getErrorStream().read() != -1 ){
-            print("Compilation Errors",process.getErrorStream());
+            printGeneratedCodeOutput("Compilation Errors",process.getErrorStream());
         }
 
         // Check if java process execute successfully or Not, 0 - successful
@@ -68,27 +77,13 @@ public class DriverProgram {
             process = new ProcessBuilder(command).start();
             // Check if RuntimeException or Errors encounter during execution then print errors on console Otherwise print Output
             if (process.getErrorStream().read() != -1) {
-                print("Errors ", process.getErrorStream());
+                printGeneratedCodeOutput("Errors ", process.getErrorStream());
             } else {
-                print("Output ", process.getInputStream());
+                printGeneratedCodeOutput("Output ", process.getInputStream());
             }
-
         }
-        HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile(testNumber));
-        ParseTreeWalker walker2 = new ParseTreeWalker();;
-        walker2.walk(htmlExtractor, tree);
-        File outputHTMLFile = new File("HTML/output" + testNumber + ".html");
-        if (!outputHTMLFile.createNewFile()) {
-            outputHTMLFile.delete() ;
-            outputHTMLFile = new File("HTML/output" + testNumber + ".html");
-        }
-        FileWriter myWriter2 = new FileWriter("HTML/output" + testNumber + ".html");
-        myWriter2.write(htmlExtractor.rewriter.getText());
-        myWriter2.close();
-
     }
-
-    private static void print(String status,InputStream input) throws IOException{
+    private static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(input));
         System.out.println("*********************** " + status + " ***********************");
         String line = null;
@@ -96,6 +91,19 @@ public class DriverProgram {
             System.out.println(line);
         }
         in.close();
+    }
+    private static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+        HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile(testNumber));
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(htmlExtractor, tree);
+        File outputHTMLFile = new File("Test/html-output/outputHtmlTest" + testNumber + ".html");
+        if (!outputHTMLFile.createNewFile()) {
+            outputHTMLFile.delete() ;
+            outputHTMLFile = new File("Test/html-output/outputHtmlTest" + testNumber + ".html");
+        }
+        FileWriter myWriter2 = new FileWriter("Test/html-output/outputHtmlTest" + testNumber + ".html");
+        myWriter2.write(htmlExtractor.rewriter.getText());
+        myWriter2.close();
     }
 
     static ArrayList<Integer> readOutPutTxtFile(int testNo) {

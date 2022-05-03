@@ -41,7 +41,7 @@ public class DriverProgram {
 
     }
 
-    private static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+    public static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         MyListenerClass extractor = new MyListenerClass(tokens);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(extractor, tree);
@@ -67,7 +67,7 @@ public class DriverProgram {
         myWriter.close();
     }
 
-    private static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
+    public static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
         String command[] = {javaLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -92,7 +92,7 @@ public class DriverProgram {
             }
         }
     }
-    private static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
+    public static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(input));
         System.out.println("*********************** " + status + " ***********************");
         String line = null;
@@ -101,7 +101,7 @@ public class DriverProgram {
         }
         in.close();
     }
-    private static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
+    public static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile(testNumber));
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(htmlExtractor, tree);

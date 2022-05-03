@@ -74,7 +74,12 @@ public class HTMLListener extends JavaParserBaseListener {
         rewriter.insertAfter(ctx.elseBody.getStop(), "</pre>");
         super.exitElseStatement(ctx);
     }
-
+    /**
+     * this is function when enter for statement_block when not Execution of condition for \n
+     * coloring green block when enter for block \n
+     * coloring  red block when no enter for block \n
+     * @param ctx the parse tree
+     */
     @Override
     public void enterForStatement(JavaParser.ForStatementContext ctx) {
         String color = this.blocks.contains(blocksCount) ? "green" : "red";
@@ -86,7 +91,11 @@ public class HTMLListener extends JavaParserBaseListener {
 
         super.enterForStatement(ctx);
     }
-
+    /**
+     * this is function when exit for_block insert </pre> html code \n
+     *
+     * @param ctx the parse tree
+     */
     @Override
     public void exitForStatement(JavaParser.ForStatementContext ctx) {
 
@@ -94,7 +103,12 @@ public class HTMLListener extends JavaParserBaseListener {
 
         super.exitForStatement(ctx);
     }
-
+    /**
+     * this is function when enter while statement_block when not Execution of condition while \n
+     * coloring green block when enter while block \n
+     * coloring  red block when no enter while block \n
+     * @param ctx the parse tree
+     */
     @Override
     public void enterWhileStatement(JavaParser.WhileStatementContext ctx) {
         String color = this.blocks.contains(blocksCount) ? "green" : "red";
@@ -103,13 +117,21 @@ public class HTMLListener extends JavaParserBaseListener {
         blocksCount++;
         super.enterWhileStatement(ctx);
     }
-
+    /**
+     * this is function when exit while_block insert </pre> html code \n
+     * @param ctx the parse tree
+     */
     @Override
     public void exitWhileStatement(JavaParser.WhileStatementContext ctx) {
         rewriter.insertAfter(ctx.stop, "</pre>");
         super.exitWhileStatement(ctx);
     }
-
+    /**
+     * this is function when enter switch statement_block when not Execution of condition while \n
+     * coloring green block when switch case  block \n
+     * coloring  red block when no switch case  block \n
+     * @param ctx the parse tree
+     */
     @Override
     public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
         String color = this.blocks.contains(blocksCount) ? "green" : "red";
@@ -119,7 +141,10 @@ public class HTMLListener extends JavaParserBaseListener {
         super.enterSwitchLabel(ctx);
     }
 
-
+    /**
+     * this is function when exit switch block closing "</pre>" html code \n
+     * @param ctx the parse tree
+     */
     @Override
     public void exitSwitchBlockStatementGroup(JavaParser.SwitchBlockStatementGroupContext ctx) {
         rewriter.insertAfter(ctx.stop, "</pre>");

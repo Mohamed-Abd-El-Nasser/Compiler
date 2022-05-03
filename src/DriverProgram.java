@@ -11,6 +11,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+/**
+ * this is the detailed description for this class
+ * the class main is <b> MyListener </b> which overrides function to
+ * To know the block income and block exit for each of
+ * for ,while , if , else ,switch statements extends @JavaParserBaseListener ctx
+ *
+ *
+ */
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
@@ -32,6 +40,7 @@ public class DriverProgram {
          generateHtmlOutput(testNumber,tokens,tree);
 
     }
+
     private static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         MyListenerClass extractor = new MyListenerClass(tokens);
         ParseTreeWalker walker = new ParseTreeWalker();

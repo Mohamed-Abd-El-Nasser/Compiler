@@ -41,6 +41,13 @@ public class DriverProgram {
 
     }
 
+    /**
+     * This Fucntion create object from mylistenerclass and create new injected java file
+     * @param testNumber
+     * @param tokens
+     * @param tree
+     * @throws Exception
+     */
     public static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
         MyListenerClass extractor = new MyListenerClass(tokens);
         ParseTreeWalker walker = new ParseTreeWalker();
@@ -67,6 +74,12 @@ public class DriverProgram {
         myWriter.close();
     }
 
+    /**
+     * This function used to print entered blocks in console and file text printed entered blocks in statement
+     * @param testNumber
+     * @param javaLocation
+     * @throws Exception
+     */
     public static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
         String command[] = {javaLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
 
@@ -92,6 +105,8 @@ public class DriverProgram {
             }
         }
     }
+
+
     public static void printGeneratedCodeOutput(String status,InputStream input) throws IOException{
         BufferedReader in = new BufferedReader(new InputStreamReader(input));
         System.out.println("*********************** " + status + " ***********************");

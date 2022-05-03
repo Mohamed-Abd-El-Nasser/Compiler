@@ -14,7 +14,7 @@ import java.io.*;
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
-        int testNumber = 1;
+        int testNumber = 3;
 
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 

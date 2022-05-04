@@ -21,6 +21,14 @@ import java.io.*;
  */
 
 public class DriverProgram {
+      /**
+     * The <b>main</b> function is used as a driver function for the whole program, it reads the input java file,
+     * generates the lexer, generates tokens, builds parser for these tokens, and generates a parse tree, then it
+     * calls <b>generateIntermediateCode</b> to generate java code, <b>runIntermediateCode</b> to run the generated code, and
+     * <b>generateHtmlOutput</b> to generate output html file indicating which blocks were entered and which were not.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         int testNumber = 1;
 

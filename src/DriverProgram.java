@@ -61,11 +61,18 @@ public class DriverProgram {
         }
         FileWriter myWriter = new FileWriter("Test/intermediate-code/genCodeTest" + testNumber +".java");
 
-        StringBuffer content = new StringBuffer(extractor.rewriter.getText().replace("public class Test" + testNumber + " {\n" +
-                "    public static void main(String[] args) throws Exception{"  , "import java.io.FileWriter;\n" +
+//         StringBuffer content = new StringBuffer(extractor.rewriter.getText().replace("public class Test" + testNumber + " {\n" +
+//                 "    public static void main(String[] args) throws Exception{"  , "import java.io.FileWriter;\n" +
+//                 "public class genCodeTest" + testNumber + "{\n" +
+//                 "    public static void main(String[] args) throws Exception{\n" +
+//                 "        FileWriter fileWriter = new FileWriter(\"Test/executionOutput.txt\");"));
+        
+        StringBuffer content = new StringBuffer(extractor.rewriter.getText());
+        
+        content.replace(14,97,"import java.io.FileWriter;\n" +
                 "public class genCodeTest" + testNumber + "{\n" +
                 "    public static void main(String[] args) throws Exception{\n" +
-                "        FileWriter fileWriter = new FileWriter(\"Test/executionOutput.txt\");"));
+                "        FileWriter fileWriter = new FileWriter(\"Test/executionOutput.txt\");");
 
         int strLength = content.length();
 

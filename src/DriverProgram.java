@@ -76,7 +76,7 @@ public class DriverProgram {
 
         int strLength = content.length();
 
-        content.replace(strLength-3,strLength-3,"\tfileWriter.close();\n\t");
+        content.replace(strLength-4,strLength-4,"\tfileWriter.close();\n\t");
 
         myWriter.write(String.valueOf(content));
 

@@ -1,6 +1,7 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -159,9 +160,12 @@ public class DriverProgram {
             outputHTMLFile.delete() ;
             outputHTMLFile = new File("Test/html-output/outputHtmlTest" + testNumber + ".html");
         }
-        FileWriter myWriter2 = new FileWriter("Test/html-output/outputHtmlTest" + testNumber + ".html");
-        myWriter2.write(htmlExtractor.rewriter.getText());
-        myWriter2.close();
+        FileWriter myWriter = new FileWriter("Test/html-output/outputHtmlTest" + testNumber + ".html");
+        myWriter.write(htmlExtractor.rewriter.getText());
+        myWriter.close();
+        // running the generated html file automatically using the desired browser
+        File htmlFile = new File("Test/html-output/outputHtmlTest" + testNumber + ".html");
+        Desktop.getDesktop().browse(htmlFile.toURI());
     }
 
     /**

@@ -5,11 +5,9 @@ import java.util.ArrayList;
 
 
 /**
- * this is the detailed description for this class
- * the HTML listener class  is generate html code  in block executed and unexecuted  from an input java program.
- * green block is executed
- * red block is not executed
- *
+ * This is the detailed description for <b>HTMLListener</b> class that extends <b>JavaParserBaseListener</b>,
+ * this class is created in order to inject html code with green color for blocks that will be executed and red
+ * color for blocks that will not be executed for a specific java file.
  */
 
 public class HTMLListener extends JavaParserBaseListener {
@@ -17,8 +15,10 @@ public class HTMLListener extends JavaParserBaseListener {
     int blocksCount = 1;
     ArrayList<Integer> blocks;
     /**
-     * This class constructor is used to initialize the rewriter object and insert the html opening tag <html>
-     * @param tokens,blocks
+     * The <b>HTMLListener</b> class constructor is used to initialize the rewriter object with the token stream, initialize
+     * blocks ArrayList with a list of executed blocks, and insert the html opening tag <html> at the beginning of the file.
+     * @param tokens
+     * @param blocks
      */
     public HTMLListener(TokenStream tokens, ArrayList<Integer> blocks) {
         rewriter = new TokenStreamRewriter(tokens);
@@ -26,10 +26,10 @@ public class HTMLListener extends JavaParserBaseListener {
         this.blocks = blocks;
     }
     /**
-     * this is function when enter if_block when Execution of condition if \n
-     * coloring green block when enter if block \n
-     * coloring  red block when no enter if block \n
-     * @param ctx the parse tree
+     * The <b>enterIfStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when entering an if block, the function mainly inserts the opening tag <pre> before the body of the if
+     * block, with green color if the block was executed, and red color for the block that was not executed.
+     * @param ctx
      */
     @Override
     public void enterIfStatement(JavaParser.IfStatementContext ctx) {
@@ -40,9 +40,9 @@ public class HTMLListener extends JavaParserBaseListener {
         super.enterIfStatement(ctx);
     }
     /**
-     * this is function when exit if_block insert </pre> html code \n
-     *
-     * @param ctx the parse tree
+     * The <b>exitIfStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when exiting an if block, the function mainly inserts the closing tag </pre> after the body of the if block.
+     * @param ctx
      */
     @Override
     public void exitIfStatement(JavaParser.IfStatementContext ctx) {
@@ -50,10 +50,11 @@ public class HTMLListener extends JavaParserBaseListener {
         super.exitIfStatement(ctx);
     }
     /**
-     * this is function when enter else statement_block when not Execution of condition if \n
-     * coloring green block when enter else block \n
-     * coloring  red block when no enter else block \n
-     * @param ctx the parse tree
+     * The <b>enterElseStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when entering an else block, the function mainly inserts the opening tag <pre> before the body of the
+     * else block, with green color if the block was executed, and red color for the
+     * block that was not executed.
+     * @param ctx
      */
     @Override
     public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
@@ -65,9 +66,9 @@ public class HTMLListener extends JavaParserBaseListener {
         super.enterElseStatement(ctx);
     }
     /**
-     * this is function when exit else_block insert </pre> html code \n
-     *
-     * @param ctx the parse tree
+     * The <b>exitElseStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when exiting an else block, the function mainly inserts the closing tag </pre> after the body of the else block.
+     * @param ctx
      */
     @Override
     public void exitElseStatement(JavaParser.ElseStatementContext ctx) {
@@ -75,10 +76,10 @@ public class HTMLListener extends JavaParserBaseListener {
         super.exitElseStatement(ctx);
     }
     /**
-     * this is function when enter for statement_block when not Execution of condition for \n
-     * coloring green block when enter for block \n
-     * coloring  red block when no enter for block \n
-     * @param ctx the parse tree
+     * The <b>enterForStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when entering a for block, the function mainly inserts the opening tag <pre> before the body of the for
+     * block, with green color if the block was executed, and red color for the block that was not executed.
+     * @param ctx
      */
     @Override
     public void enterForStatement(JavaParser.ForStatementContext ctx) {
@@ -92,9 +93,9 @@ public class HTMLListener extends JavaParserBaseListener {
         super.enterForStatement(ctx);
     }
     /**
-     * this is function when exit for_block insert </pre> html code \n
-     *
-     * @param ctx the parse tree
+     * The <b>exitForStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when exiting a for block, the function mainly inserts the closing tag </pre> after the body of the for block.
+     * @param ctx
      */
     @Override
     public void exitForStatement(JavaParser.ForStatementContext ctx) {
@@ -104,10 +105,10 @@ public class HTMLListener extends JavaParserBaseListener {
         super.exitForStatement(ctx);
     }
     /**
-     * this is function when enter while statement_block when not Execution of condition while \n
-     * coloring green block when enter while block \n
-     * coloring  red block when no enter while block \n
-     * @param ctx the parse tree
+     * The <b>enterWhileStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when entering a while block, the function mainly inserts the opening tag <pre> before the body of the
+     * while block, with green color if the block was executed, and red color for the block that was not executed.
+     * @param ctx
      */
     @Override
     public void enterWhileStatement(JavaParser.WhileStatementContext ctx) {
@@ -118,8 +119,9 @@ public class HTMLListener extends JavaParserBaseListener {
         super.enterWhileStatement(ctx);
     }
     /**
-     * this is function when exit while_block insert </pre> html code \n
-     * @param ctx the parse tree
+     * The <b>exitWhileStatement</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when exiting a while block, the function mainly inserts the closing tag </pre> after the body of the while block.
+     * @param ctx
      */
     @Override
     public void exitWhileStatement(JavaParser.WhileStatementContext ctx) {
@@ -127,10 +129,10 @@ public class HTMLListener extends JavaParserBaseListener {
         super.exitWhileStatement(ctx);
     }
     /**
-     * this is function when enter switch statement_block when not Execution of condition while \n
-     * coloring green block when switch case  block \n
-     * coloring  red block when no switch case  block \n
-     * @param ctx the parse tree
+     * The <b>enterSwitchLabel</b> function overrides the actual function generated from the antlr recognizer, and it
+     * is called when entering a switch label block, the function mainly inserts the opening tag <pre> before the body
+     * of the switch label block, with green color if the block was executed, and red color for the block that was not executed.
+     * @param ctx
      */
     @Override
     public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
@@ -140,10 +142,11 @@ public class HTMLListener extends JavaParserBaseListener {
         blocksCount++;
         super.enterSwitchLabel(ctx);
     }
-
     /**
-     * this is function when exit switch block closing "</pre>" html code \n
-     * @param ctx the parse tree
+     * The <b>exitSwitchBlockStatementGroup</b> function overrides the actual function generated from the antlr recognizer,
+     * and it is called when exiting a switch block statement, the function mainly inserts the closing tag </pre> after
+     * the body of the switch block statement.
+     * @param ctx
      */
     @Override
     public void exitSwitchBlockStatementGroup(JavaParser.SwitchBlockStatementGroupContext ctx) {

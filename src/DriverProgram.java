@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 /**
- * this is the detailed description for this class
- * the class main is <b> MyListener </b> which overrides function to
- * To know the block income and block exit for each of
- * for ,while , if , else ,switch statements extends @JavaParserBaseListener ctx
- *
- *
+ * This is the detailed description for the <b>DriverProgram</b> class,
+ * this is the main class used to instantiate from the Listener classes;
+ * <b>MainListener</b> and <b>HTMLListener</b> and uses some driver functions
+ * to perform the required tasks of generating injected java code, running the
+ * generated intermediate java code, and generating html output to color entered
+ * and not entered blocks.
  */
 
 public class DriverProgram {
     public static void main(String[] args) throws Exception {
-        int testNumber = 3;
+        int testNumber = 1;
 
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
@@ -42,14 +42,16 @@ public class DriverProgram {
     }
 
     /**
-     * This Function create object from mylistenerclass and create new  java file for injected java code
+     * The <b>generateIntermediateCode</b> function is used to instantiate an object from MainListener class that contains
+     * <b>TokenStreamRewriter</b> object with the injected java code, this function mainly generates an intermediate
+     * java file injected with a specific java statements.
      * @param testNumber
      * @param tokens
      * @param tree
      * @throws Exception
      */
     public static void generateIntermediateCode (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
-        MyListenerClass extractor = new MyListenerClass(tokens);
+        MainListener extractor = new MainListener(tokens);
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(extractor, tree);
         File outputFile = new File("Test/intermediate-code/genCodeTest" + testNumber + ".java");
@@ -75,13 +77,14 @@ public class DriverProgram {
     }
 
     /**
-     * This function used to print entered blocks in console and file text printed in it entered blocks in statement
+     * The <b>runIntermediateCode</b> function is mainly used to run the generated intermediate code to show
+     * which blocks are entered, print them in console, and write these blocks numbers in a text file.
      * @param testNumber
-     * @param javaLocation
+     * @param javaProgramLocation
      * @throws Exception
      */
-    public static void runIntermediateCode (int testNumber,String javaLocation) throws Exception {
-        String command[] = {javaLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
+    public static void runIntermediateCode (int testNumber,String javaProgramLocation) throws Exception {
+        String command[] = {javaProgramLocation,"Test/intermediate-code/genCodeTest" + testNumber +".java"};
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
 
@@ -107,8 +110,8 @@ public class DriverProgram {
     }
 
     /**
-     * This function is helper function help format code \n
-     * used output code print in console and if
+     * The <b>printGeneratedCodeOutput</b> is considered a helper function used by the <b>runIntermediateCode</b>
+     * function to print out the result of running the generated intermediate code using java process builder.
      * @param status
      * @param input
      * @throws IOException
@@ -122,8 +125,17 @@ public class DriverProgram {
         }
         in.close();
     }
+    /**
+     * The <b>generateHtmlOutput</b> function is used to instantiate an object from HTMLListener class that contains
+     * <b>TokenStreamRewriter</b> object with the injected html code, this function mainly generates an html file
+     * injected with an html code with coloring to show which block are entered and which are not.
+     * @param testNumber
+     * @param tokens
+     * @param tree
+     * @throws Exception
+     */
     public static void generateHtmlOutput (int testNumber, CommonTokenStream tokens, ParseTree tree) throws Exception {
-        HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile(testNumber));
+        HTMLListener htmlExtractor = new HTMLListener(tokens, readOutPutTxtFile());
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(htmlExtractor, tree);
         File outputHTMLFile = new File("Test/html-output/outputHtmlTest" + testNumber + ".html");
@@ -137,13 +149,11 @@ public class DriverProgram {
     }
 
     /**
-     * this Function used to injected html code for enter blocks and no enter blocks
-     * coloring green in enter blocks
-     * coloring red in not enter blocks
-     * @param testNo
-     * @return
+     * The <b>readOutPutTxtFile</b> is a helper function used by <b>generateHtmlOutput</b> function to read the output text
+     * file generated from running the intermediate code to know which block are entered and which are not.
+     * @return ArrayList<Integer>
      */
-    static ArrayList<Integer> readOutPutTxtFile(int testNo) {
+    static ArrayList<Integer> readOutPutTxtFile() {
         ArrayList<Integer> list = new ArrayList<Integer>();
         try {
             File myObj = new File("Test/executionOutput.txt");
@@ -159,6 +169,5 @@ public class DriverProgram {
         }
         return list;
     }
-
 
 }

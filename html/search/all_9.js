@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['identifier_0',['IDENTIFIER',['../class_java_lexer.html#acc16d56d12c0fbf88fa099c7fb39cf77',1,'JavaLexer.IDENTIFIER()'],['../class_java_parser.html#a1f2dff73384f488aa67ae388fe8ccadc',1,'JavaParser.IDENTIFIER()']]],
-  ['identifier_1',['identifier',['../class_java_parser.html#a61e4516c2a6c31cdd349d99939ae8dca',1,'JavaParser']]],
+  ['identifier_0',['identifier',['../class_java_parser.html#a61e4516c2a6c31cdd349d99939ae8dca',1,'JavaParser']]],
+  ['identifier_1',['IDENTIFIER',['../class_java_lexer.html#acc16d56d12c0fbf88fa099c7fb39cf77',1,'JavaLexer.IDENTIFIER()'],['../class_java_parser.html#a1f2dff73384f488aa67ae388fe8ccadc',1,'JavaParser.IDENTIFIER()']]],
   ['if_2',['IF',['../class_java_lexer.html#ac34b377c24493ffa4b1b8c42fddab558',1,'JavaLexer.IF()'],['../class_java_parser.html#a65966407d843938bd1311fce9ad34995',1,'JavaParser.IF()']]],
   ['ifstatement_3',['ifStatement',['../class_java_parser.html#a2981c15283ad152b6314cfbe0a4310ea',1,'JavaParser']]],
   ['implements_4',['IMPLEMENTS',['../class_java_lexer.html#ae9fcf7da1db16e2827dbcdbb39fadad5',1,'JavaLexer.IMPLEMENTS()'],['../class_java_parser.html#ae780d33a240b776af4f9bcaa2076802f',1,'JavaParser.IMPLEMENTS()']]],

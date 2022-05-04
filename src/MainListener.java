@@ -1,14 +1,29 @@
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.TokenStreamRewriter;
 
-public class MyListenerClass extends JavaParserBaseListener {
+/**
+ * This is the detailed description for <b>MainListener</b> class that extends <b>JavaParserBaseListener</b>, this class
+ * is created in order to inject java statements to show which blocks will be executed and  which will not be executed
+ * for a specific java file, each injected java code fragment includes a print statement for the block and writing block
+ * number in an external text file.
+ */
+public class MainListener extends JavaParserBaseListener {
     TokenStreamRewriter rewriter;
     int blocksCount = 1;
 
-    public MyListenerClass(TokenStream tokens) {
+    /**
+     * The <b>MainListener</b> class constructor is used to initialize the rewriter object with the token stream.
+     * @param tokens
+     */
+    public MainListener(TokenStream tokens) {
         rewriter = new TokenStreamRewriter(tokens);
     }
-
+    /**
+     * The <b>enterIfStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when entering an if block, the function mainly inserts left brace if the block does not have one, a print
+     * statement with the block number, and another statement to write the block number in a text file.
+     * @param ctx
+     */
     @Override
     public void enterIfStatement(JavaParser.IfStatementContext ctx){
         int lineNumber = ctx.start.getLine();
@@ -24,7 +39,11 @@ public class MyListenerClass extends JavaParserBaseListener {
         blocksCount++;
         super.enterIfStatement(ctx);
     }
-
+    /**
+     * The <b>exitIfStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when exiting an if block, the function mainly inserts right brace if the block does not have one.
+     * @param ctx
+     */
     @Override
     public void exitIfStatement(JavaParser.IfStatementContext ctx) {
         if(ctx.getChild(2).getText().charAt(0) !='{') {
@@ -32,7 +51,12 @@ public class MyListenerClass extends JavaParserBaseListener {
         }
         super.exitIfStatement(ctx);
     }
-
+    /**
+     * The <b>enterElseStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when entering an else block, the function mainly inserts left brace if the block does not have one, a print
+     * statement with the block number, and another statement to write the block number in a text file.
+     * @param ctx
+     */
     @Override
     public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
         int lineNumber = ctx.start.getLine();
@@ -55,7 +79,11 @@ public class MyListenerClass extends JavaParserBaseListener {
         }
         super.enterElseStatement(ctx);
     }
-
+    /**
+     * The <b>exitElseStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when exiting an else block, the function mainly inserts right brace if the block does not have one.
+     * @param ctx
+     */
     @Override
     public void exitElseStatement(JavaParser.ElseStatementContext ctx) {
         if (!ctx.elseBody.getStart().getText().equals("if")) {
@@ -65,7 +93,12 @@ public class MyListenerClass extends JavaParserBaseListener {
             super.exitElseStatement(ctx);
         }
     }
-
+    /**
+     * The <b>enterForStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when entering a for block, the function mainly inserts left brace if the block does not have one, a print
+     * statement with the block number, and another statement to write the block number in a text file.
+     * @param ctx
+     */
     @Override
     public void enterForStatement(JavaParser.ForStatementContext ctx) {
         int lineNumber = ctx.start.getLine();
@@ -82,11 +115,13 @@ public class MyListenerClass extends JavaParserBaseListener {
             rewriter.insertBefore(ctx.forBody.getStart(), injectedCode);
         }
         blocksCount++;
- //       System.out.println(ctx.getChild(1));
-
         super.enterForStatement(ctx);
     }
-
+    /**
+     * The <b>exitForStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when exiting a for block, the function mainly inserts right brace if the block does not have one.
+     * @param ctx
+     */
     @Override
     public void exitForStatement(JavaParser.ForStatementContext ctx) {
 
@@ -97,7 +132,12 @@ public class MyListenerClass extends JavaParserBaseListener {
 
         super.exitForStatement(ctx);
     }
-
+    /**
+     * The <b>enterWhileStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when entering a while block, the function mainly inserts left brace if the block does not have one, a print
+     * statement with the block number, and another statement to write the block number in a text file.
+     * @param ctx
+     */
     @Override
     public void enterWhileStatement(JavaParser.WhileStatementContext ctx) {
 
@@ -118,7 +158,11 @@ public class MyListenerClass extends JavaParserBaseListener {
 
         super.enterWhileStatement(ctx);
     }
-
+    /**
+     * The <b>exitWhileStatement</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when exiting a while block, the function mainly inserts right brace if the block does not have one.
+     * @param ctx
+     */
     @Override
     public void exitWhileStatement(JavaParser.WhileStatementContext ctx) {
         if(ctx.getChild(2).getText().charAt(0) !='{') {
@@ -128,6 +172,12 @@ public class MyListenerClass extends JavaParserBaseListener {
         blocksCount++;
         super.exitWhileStatement(ctx);
     }
+    /**
+     * The <b>enterSwitchLabel</b> function overrides the actual function generated from the antlr recognizer, and it is
+     * called when entering a switch label block, the function mainly inserts a print statement with the block number,
+     * and another statement to write the block number in a text file.
+     * @param ctx
+     */
     @Override
     public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
         int lineNumber = ctx.start.getLine();

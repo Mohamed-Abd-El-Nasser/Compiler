@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>java complier: DriverProgram Class Reference</title>
+<title>java compiler: DriverProgram Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">java complier
+   <div id="projectname">java compiler
    </div>
   </td>
  </tr>
@@ -75,15 +75,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a6c582d8d2759173570686e2e007e6936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab502f6869e282260704e3a9b41264abb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_driver_program.html#ab502f6869e282260704e3a9b41264abb">generateIntermediateCode</a> (int testNumber, CommonTokenStream tokens, ParseTree tree)  throws Exception </td></tr>
 <tr class="separator:ab502f6869e282260704e3a9b41264abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60c4f09853f0f31c74d8b1aa5759fa28"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_driver_program.html#a60c4f09853f0f31c74d8b1aa5759fa28">runIntermediateCode</a> (int testNumber, String javaLocation)  throws Exception </td></tr>
-<tr class="separator:a60c4f09853f0f31c74d8b1aa5759fa28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51398a17efbce5111acda2eab8c59b95"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_driver_program.html#a51398a17efbce5111acda2eab8c59b95">runIntermediateCode</a> (int testNumber, String javaProgramLocation)  throws Exception </td></tr>
+<tr class="separator:a51398a17efbce5111acda2eab8c59b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a661ef90d4a3d11d5d9b992719c7233dc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_driver_program.html#a661ef90d4a3d11d5d9b992719c7233dc">printGeneratedCodeOutput</a> (String status, InputStream input)  throws IOException</td></tr>
 <tr class="separator:a661ef90d4a3d11d5d9b992719c7233dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5643093a93d46d211ef4fb4f89cee83"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_driver_program.html#ac5643093a93d46d211ef4fb4f89cee83">generateHtmlOutput</a> (int testNumber, CommonTokenStream tokens, ParseTree tree)  throws Exception </td></tr>
 <tr class="separator:ac5643093a93d46d211ef4fb4f89cee83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >this is the detailed description for this class the class main is <b> MyListener </b> which overrides function to To know the block income and block exit for each of for ,while , if , else ,switch statements extends @JavaParserBaseListener ctx </p>
+<div class="textblock"><p >This is the detailed description for the <b><a class="el" href="class_driver_program.html">DriverProgram</a></b> class, this is the main class used to instantiate from the Listener classes; <b><a class="el" href="class_main_listener.html">MainListener</a></b> and <b><a class="el" href="class_h_t_m_l_listener.html">HTMLListener</a></b> and uses some driver functions to perform the required tasks of generating injected java code, running the generated intermediate java code, and generating html output to color entered and not entered blocks. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac5643093a93d46d211ef4fb4f89cee83" name="ac5643093a93d46d211ef4fb4f89cee83"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac5643093a93d46d211ef4fb4f89cee83">&#9670;&nbsp;</a></span>generateHtmlOutput()</h2>
@@ -124,6 +124,20 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The <b>generateHtmlOutput</b> function is used to instantiate an object from <a class="el" href="class_h_t_m_l_listener.html">HTMLListener</a> class that contains <b>TokenStreamRewriter</b> object with the injected html code, this function mainly generates an html file injected with an html code with coloring to show which block are entered and which are not. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">testNumber</td><td></td></tr>
+    <tr><td class="paramname">tokens</td><td></td></tr>
+    <tr><td class="paramname">tree</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -166,7 +180,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >This Function create object from mylistenerclass and create new java file for injected java code </p><dl class="params"><dt>Parameters</dt><dd>
+<p >The <b>generateIntermediateCode</b> function is used to instantiate an object from <a class="el" href="class_main_listener.html">MainListener</a> class that contains <b>TokenStreamRewriter</b> object with the injected java code, this function mainly generates an intermediate java file injected with a specific java statements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">testNumber</td><td></td></tr>
     <tr><td class="paramname">tokens</td><td></td></tr>
@@ -206,6 +220,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >The <b>main</b> function is used as a driver function for the whole program, it reads the input java file, generates the lexer, generates tokens, builds parser for these tokens, and generates a parse tree, then it calls <b>generateIntermediateCode</b> to generate java code, <b>runIntermediateCode</b> to run the generated code, and <b>generateHtmlOutput</b> to generate output html file indicating which blocks were entered and which were not. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -242,8 +268,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >This function is helper function help format code <br  />
-used output code print in console and if </p><dl class="params"><dt>Parameters</dt><dd>
+<p >The <b>printGeneratedCodeOutput</b> is considered a helper function used by the <b>runIntermediateCode</b> function to print out the result of running the generated intermediate code using java process builder. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">status</td><td></td></tr>
     <tr><td class="paramname">input</td><td></td></tr>
@@ -259,8 +284,8 @@ used output code print in console and if </p><dl class="params"><dt>Parameters</
 
 </div>
 </div>
-<a id="a60c4f09853f0f31c74d8b1aa5759fa28" name="a60c4f09853f0f31c74d8b1aa5759fa28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60c4f09853f0f31c74d8b1aa5759fa28">&#9670;&nbsp;</a></span>runIntermediateCode()</h2>
+<a id="a51398a17efbce5111acda2eab8c59b95" name="a51398a17efbce5111acda2eab8c59b95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51398a17efbce5111acda2eab8c59b95">&#9670;&nbsp;</a></span>runIntermediateCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +303,7 @@ used output code print in console and if </p><dl class="params"><dt>Parameters</
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>javaLocation</em>&#160;</td>
+          <td class="paramname"><em>javaProgramLocation</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -292,10 +317,10 @@ used output code print in console and if </p><dl class="params"><dt>Parameters</
   </tr>
 </table>
 </div><div class="memdoc">
-<p >This function used to print entered blocks in console and file text printed in it entered blocks in statement </p><dl class="params"><dt>Parameters</dt><dd>
+<p >The <b>runIntermediateCode</b> function is mainly used to run the generated intermediate code to show which blocks are entered, print them in console, and write these blocks numbers in a text file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">testNumber</td><td></td></tr>
-    <tr><td class="paramname">javaLocation</td><td></td></tr>
+    <tr><td class="paramname">javaProgramLocation</td><td></td></tr>
   </table>
   </dd>
 </dl>

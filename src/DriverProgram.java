@@ -32,7 +32,7 @@ public class DriverProgram {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        int testNumber = 1;
+        int testNumber = 4;
 
         CharStream input = CharStreams.fromFileName("Test/Test" + testNumber + ".java");
 
